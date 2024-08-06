@@ -1,11 +1,9 @@
-import React from 'react';
-
 const Navbar = ({ sections, onSectionClick }) => {
   return (
-    <nav className="fixed top-0 left-0 right-0 p-4 z-50">
+    <nav className="fixed top-8 left-0 right-0 p-4 z-50">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-white">LOGO</h1>
-        <ul className="hidden md:flex space-x-4">
+        <h1 className="text-2xl font-bold text-white">LORENZO</h1>
+     {/*<ul className="hidden md:flex space-x-4">
           {sections.map((section, index) => (
             <li key={section}>
               <button 
@@ -16,7 +14,7 @@ const Navbar = ({ sections, onSectionClick }) => {
               </button>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     </nav>
   );

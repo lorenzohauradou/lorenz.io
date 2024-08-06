@@ -7,7 +7,9 @@ const BottomNavigation = ({ sections, currentSection, onSectionClick }) => {
         {sections.map((section, index) => (
           <button
             key={section}
-            onClick={() => onSectionClick(index)}
+            onClick={() => {
+              onSectionClick(index); // Passa l'indice della sezione cliccata
+            }}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
               currentSection === index 
                 ? 'bg-white text-gray-900' 
