@@ -9,7 +9,7 @@ import Contact from './components/Sections/Contact';
 const App = () => {
   const scrollRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
-  const [triggerAnimation, setTriggerAnimation] = useState(false);
+  //const [triggerAnimation, setTriggerAnimation] = useState(false);
   const sections = ['Home', 'Projects', 'About', 'Contact'];
 
   const scrollToSection = (index) => {
@@ -21,7 +21,7 @@ const App = () => {
       });
       setCurrentSection(index);
       // Trigger animation when "Projects" is clicked
-      setTriggerAnimation(index === 1);
+      // setTriggerAnimation(index === 1);
     }
   };
 

@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'xs': '375px', // Aggiungi un breakpoint per larghezze più piccole
+      },
+    },
   },
   plugins: [],
 };
