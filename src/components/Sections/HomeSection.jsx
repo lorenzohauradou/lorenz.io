@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import Spline from "@splinetool/react-spline";
 
 const HomeSection = ({ triggerAnimation, scrollToSection }) => {
-  const splineRef = useRef();
 
   /*useEffect(() => {
     if (triggerAnimation && splineRef.current) {
@@ -40,7 +39,6 @@ const HomeSection = ({ triggerAnimation, scrollToSection }) => {
 
           <div className="md:w-2/3 h-[500px] md:h-[600px] z-0 relative xs:h-[300px] xs:mr-8 xs:w-[300px] xs:mb-4">
             <Spline
-              ref={splineRef}
               scene="https://prod.spline.design/lPVd1X4CHil3zkUI/scene.splinecode"
             />
           </div>

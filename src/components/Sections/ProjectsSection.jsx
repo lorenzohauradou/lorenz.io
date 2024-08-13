@@ -6,7 +6,7 @@ const ProjectsSection = () => {
     <section className="w-screen h-screen flex-shrink-0 snap-start">
       <div className="container mx-auto px-4 h-full flex items-center">
         <div className="w-full">
-        <h2 className="text-4xl font-bold mb-8 text-white">Featured Projects</h2>
+        <h2 className="text-4xl font-bold mb-8 text-white xs:text-center md:text-left">Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3].map((project) => (
               <div key={project} className="bg-gray-800 bg-opacity-50 p-6 rounded-lg backdrop-blur-sm">

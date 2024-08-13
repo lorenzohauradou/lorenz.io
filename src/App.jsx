@@ -28,7 +28,7 @@ const App = () => {
   return (
     <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-90"></div>
-      <div className="absolute inset-0 backdrop-blur-[2px]"></div>
+      <div className="absolute inset-0 backdrop-blur-[1px]"></div>
 
       <div ref={scrollRef} className="flex h-full w-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory">
         <HomeSection scrollToSection={scrollToSection} />
