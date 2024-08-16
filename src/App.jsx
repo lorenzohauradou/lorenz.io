@@ -20,11 +20,8 @@ const App = () => {
         behavior: 'smooth',
       });
       setCurrentSection(index);
-      // Trigger animation when "Projects" is clicked
-      // setTriggerAnimation(index === 1);
     }
   };
-
   return (
     <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-90"></div>
