@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import Navbar from './components/Navigation/Navbar';
 import BottomNavigation from './components/Navigation/BottomNavigation';
 import HomeSection from './components/Sections/HomeSection';
@@ -9,19 +9,16 @@ import Contact from './components/Sections/Contact';
 const App = () => {
   const scrollRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
+  const [direction, setDirection] = useState('right'); // Nuovo stato per la direzione
   const sections = ['Home', 'Projects', 'About', 'Contact'];
 
-  /*
-  const backgroundGradients = [
-    'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-950',  // Home
-    'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900', // Projects
-    'bg-gradient-to-br from-gray-800 via-gray-800 to-gray-800', // About
-    'bg-gradient-to-br from-gray-700 via-gray-500 to-gray-700', // Contact
-  ];
-  */
   const scrollToSection = (index) => {
     if (scrollRef.current) {
       const sectionWidth = scrollRef.current.offsetWidth;
+
+      // Imposta la direzione in base alla sezione corrente e a quella di destinazione
+      setDirection(index > currentSection ? 'right' : 'left');
+
       scrollRef.current.scrollTo({
         left: index * sectionWidth,
         behavior: 'smooth',
@@ -30,11 +27,6 @@ const App = () => {
     }
   };
 
-  /*
-  useEffect(() => {
-    document.body.className = backgroundGradients[currentSection];
-  }, [currentSection, backgroundGradients]);
-  */
   return (
     <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-90"></div>
@@ -42,7 +34,7 @@ const App = () => {
 
       <div ref={scrollRef} className="flex h-full w-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory">
         <HomeSection scrollToSection={scrollToSection} />
-        <ProjectsSection />
+        <ProjectsSection direction={direction} />
         <About />
         <Contact />
       </div>
