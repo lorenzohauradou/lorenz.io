@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Navbar from './components/Navigation/Navbar';
 import BottomNavigation from './components/Navigation/BottomNavigation';
 import HomeSection from './components/Sections/HomeSection';
@@ -9,9 +9,16 @@ import Contact from './components/Sections/Contact';
 const App = () => {
   const scrollRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
-  //const [triggerAnimation, setTriggerAnimation] = useState(false);
   const sections = ['Home', 'Projects', 'About', 'Contact'];
 
+  /*
+  const backgroundGradients = [
+    'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-950',  // Home
+    'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900', // Projects
+    'bg-gradient-to-br from-gray-800 via-gray-800 to-gray-800', // About
+    'bg-gradient-to-br from-gray-700 via-gray-500 to-gray-700', // Contact
+  ];
+  */
   const scrollToSection = (index) => {
     if (scrollRef.current) {
       const sectionWidth = scrollRef.current.offsetWidth;
@@ -22,6 +29,12 @@ const App = () => {
       setCurrentSection(index);
     }
   };
+
+  /*
+  useEffect(() => {
+    document.body.className = backgroundGradients[currentSection];
+  }, [currentSection, backgroundGradients]);
+  */
   return (
     <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-90"></div>
