@@ -15,7 +15,7 @@ const HomeSection = ({ scrollToSection }) => {
             </p>
             <button
               className="bg-gray-700 text-white px-8 py-4 rounded-full hover:bg-gray-600 transition duration-300 text-lg"
-              onClick={() => scrollToSection(1)}
+              onClick={() => scrollToSection(2)}
             >
               About Me
             </button>

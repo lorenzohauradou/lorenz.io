@@ -15,9 +15,8 @@ const App = () => {
   const scrollToSection = (index) => {
     if (scrollRef.current) {
       const sectionWidth = scrollRef.current.offsetWidth;
-
-      // Imposta la direzione in base alla sezione corrente e a quella di destinazione
-      setDirection(index > currentSection ? 'right' : 'left');
+      
+      setDirection(index <= currentSection ? 'right' : 'left');
 
       scrollRef.current.scrollTo({
         left: index * sectionWidth,
@@ -33,7 +32,7 @@ const App = () => {
       <div className="absolute inset-0 backdrop-blur-[1px]"></div>
 
       <div ref={scrollRef} className="flex h-full w-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory">
-        <HomeSection scrollToSection={scrollToSection} />
+        <HomeSection scrollToSection={scrollToSection} direction={direction} />
         <ProjectsSection direction={direction} />
         <About />
         <Contact />
