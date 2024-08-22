@@ -1,6 +1,14 @@
 import Spline from "@splinetool/react-spline";
+import { useRef } from "react";
 
 const HomeSection = ({ scrollToSection }) => {
+  const splineRef = useRef();
+
+  const handleButtonClick = () => {
+    if (splineRef.current) {
+      splineRef.current.emitEvent("play", "Start");
+    }
+  };
 
   return (
     <section className="w-screen h-screen flex-shrink-0 snap-start relative">
@@ -16,12 +24,13 @@ const HomeSection = ({ scrollToSection }) => {
             <button
               className="bg-gray-700 text-white px-8 py-4 rounded-full hover:bg-gray-600 transition duration-300 text-lg"
               onClick={() => scrollToSection(2)}
+              ref={splineRef}
             >
               About Me
             </button>
           </div>
 
-          <div className="md:w-2/3 h-[500px] md:h-[500px] z-0 relative xs:h-[400px] xs:mr-8 xs:w-[500px] xs:mb-4 xs:scale-150 xs:left-6">
+          <div className="md:w-[900px] md:top-[0px] h-[500px] md:h-[500px] z-0 relative xs:h-[400px] xs:mr-8 xs:w-[500px] md:scale-150 xs:scale-125 xs:bottom-14 xs:right-7 ">
             <Spline
               scene="https://prod.spline.design/lPVd1X4CHil3zkUI/scene.splinecode"
             />

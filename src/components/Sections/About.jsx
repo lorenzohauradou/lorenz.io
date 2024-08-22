@@ -6,8 +6,8 @@ const About = () => {
     <section className="w-screen h-screen flex-shrink-0 snap-start relative flex items-center justify-center">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between w-full">
         <div className="md:w-1/2 flex justify-center mb-8 md:mb-0">
-          <div className="relative w-[500px] h-[500px] md:w-[500px] md:h-[500px] rounded-full overflow-hidden">
-            <Spline scene="https://prod.spline.design/lPVd1X4CHil3zkUI/scene.splinecode" />
+          <div className="relative w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full overflow-hidden md:right-24">
+            <Spline scene="https://prod.spline.design/p6VsBHC51yQh0do1/scene.splinecode" />
           </div>
         </div>
         <div className="md:w-1/2 text-center md:text-left">

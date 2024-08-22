@@ -8,3 +8,8 @@
 .spacer {
   height: 100vh;
   }
+  
+.scroll-container {
+  scroll-behavior: smooth; /* Supportato da alcuni browser */
+  -webkit-overflow-scrolling: touch; /* Per Safari su iOS */
+}

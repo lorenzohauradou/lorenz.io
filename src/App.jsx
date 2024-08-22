@@ -9,7 +9,7 @@ import Contact from './components/Sections/Contact';
 const App = () => {
   const scrollRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
-  const [direction, setDirection] = useState('right'); // Nuovo stato per la direzione
+  const [direction, setDirection] = useState('right');
   const sections = ['Home', 'Projects', 'About', 'Contact'];
 
   const scrollToSection = (index) => {
@@ -27,7 +27,7 @@ const App = () => {
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black scroll-container">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-90"></div>
       <div className="absolute inset-0 backdrop-blur-[1px]"></div>
 
