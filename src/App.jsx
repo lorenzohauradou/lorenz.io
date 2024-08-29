@@ -1,48 +1,70 @@
-import React, { useRef, useState } from 'react';
-import Navbar from './components/Navigation/Navbar';
-import BottomNavigation from './components/Navigation/BottomNavigation';
-import HomeSection from './components/Sections/HomeSection';
-import ProjectsSection from './components/Sections/ProjectsSection';
-import About from './components/Sections/About';
-import Contact from './components/Sections/Contact';
+import React, { useRef, useState } from "react";
+import Navbar from "./components/Navigation/Navbar";
+import BottomNavigation from "./components/Navigation/BottomNavigation";
+import HomeSection from "./components/Sections/HomeSection";
+import ProjectsSection from "./components/Sections/ProjectsSection";
+import About from "./components/Sections/About";
+import Contact from "./components/Sections/Contact";
 
 const App = () => {
   const scrollRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
-  const [direction, setDirection] = useState('right');
-  const sections = ['Home', 'Projects', 'About', 'Contact'];
+  const [direction, setDirection] = useState("left");
+  const sections = ["Home", "Projects", "About", "Contact"];
 
   const scrollToSection = (index) => {
     if (scrollRef.current) {
-      const sectionWidth = scrollRef.current.offsetWidth;
-      
-      setDirection(index <= currentSection ? 'right' : 'left');
+      // Rileva la direzione del movimento
+      setDirection(index <= currentSection ? "left" : "right");
 
-      scrollRef.current.scrollTo({
-        left: index * sectionWidth,
-        behavior: 'smooth',
-      });
+      // Scrolling su desktop (orizzontale)
+      if (window.innerWidth >= 768) {
+        const sectionWidth = scrollRef.current.offsetWidth;
+
+        scrollRef.current.scrollTo({
+          left: index * sectionWidth,
+          behavior: "smooth",
+        });
+      } else {
+        // Scrolling su mobile (verticale)
+        const sectionHeight = scrollRef.current.offsetHeight;
+
+        scrollRef.current.scrollTo({
+          top: index * sectionHeight,
+          behavior: "smooth",
+        });
+      }
       setCurrentSection(index);
     }
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black scroll-container">
+    <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-90"></div>
       <div className="absolute inset-0 backdrop-blur-[1px]"></div>
 
-      <div ref={scrollRef} className="flex h-full w-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory">
+      <div
+        ref={scrollRef}
+        className={`
+          ${
+            window.innerWidth >= 768
+              ? "flex overflow-x-auto snap-x snap-mandatory"
+              : "block overflow-y-auto snap-y snap-mandatory"
+          } 
+          h-full w-full
+        `}
+      >
         <HomeSection scrollToSection={scrollToSection} direction={direction} />
         <ProjectsSection direction={direction} />
-        <About />
+        <About direction={direction} />
         <Contact />
       </div>
 
       <Navbar sections={sections} onSectionClick={scrollToSection} />
-      <BottomNavigation 
-        sections={sections} 
-        currentSection={currentSection} 
-        onSectionClick={scrollToSection} 
+      <BottomNavigation
+        sections={sections}
+        currentSection={currentSection}
+        onSectionClick={scrollToSection}
       />
     </div>
   );

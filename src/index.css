@@ -12,4 +12,13 @@
 .scroll-container {
   scroll-behavior: smooth; /* Supportato da alcuni browser */
   -webkit-overflow-scrolling: touch; /* Per Safari su iOS */
+  will-change: scroll-position;
+}
+
+@media (min-width: 375px) {
+  .scale {
+      --tw-scale-x: .80;
+      --tw-scale-y: .80;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
 }
