@@ -5,14 +5,20 @@
 ::-webkit-scrollbar {
     display: none;
   }
-.spacer {
-  height: 100vh;
-  }
+
   
 .scroll-container {
   scroll-behavior: smooth; /* Supportato da alcuni browser */
   -webkit-overflow-scrolling: touch; /* Per Safari su iOS */
   will-change: scroll-position;
+}
+
+.spline-container {
+  scale: 1;
+}
+
+.spacer {
+  height: 0px;
 }
 
 @media (min-width: 375px) {

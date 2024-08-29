@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 const BottomNavigation = ({ sections, currentSection, onSectionClick }) => {
-
   const buttonRefs = useRef([]);
   const lerp = (x, y, a) => x * (1 - a) + y * a;
 

@@ -3,7 +3,7 @@ import { FaRocket, FaLightbulb, FaCode } from "react-icons/fa";
 
 const About = () => {
   return (
-    <section className="scale xs:pt-28 w-screen flex-shrink-0 snap-start relative flex items-center justify-center overflow-hidden">
+    <section className="scale xs:pt-28 w-screen min-h-screen flex-shrink-0 snap-start relative flex items-center justify-center overflow-hidden">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -20,7 +20,7 @@ const About = () => {
         >
           About Me
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:mb-36 gap-8 w-full max-w-4xl pb-10">
           <AboutCard
             icon={<FaRocket className="text-4xl text-blue-400" />}
             title="Passionate"
@@ -48,7 +48,7 @@ const About = () => {
 const AboutCard = ({ icon, title, content, delay }) => {
   return (
     <motion.div
-      initial={{ y: 50, opacity: 0 }}
+      initial={{ y: 35, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ delay, duration: 0.5 }}
       viewport={{ once: false }}

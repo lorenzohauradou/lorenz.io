@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Navbar from "./components/Navigation/Navbar";
 import BottomNavigation from "./components/Navigation/BottomNavigation";
 import HomeSection from "./components/Sections/HomeSection";
@@ -14,10 +14,8 @@ const App = () => {
 
   const scrollToSection = (index) => {
     if (scrollRef.current) {
-      // Rileva la direzione del movimento
       setDirection(index <= currentSection ? "left" : "right");
 
-      // Scrolling su desktop (orizzontale)
       if (window.innerWidth >= 768) {
         const sectionWidth = scrollRef.current.offsetWidth;
 
@@ -26,7 +24,6 @@ const App = () => {
           behavior: "smooth",
         });
       } else {
-        // Scrolling su mobile (verticale)
         const sectionHeight = scrollRef.current.offsetHeight;
 
         scrollRef.current.scrollTo({
@@ -38,6 +35,29 @@ const App = () => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const sectionSize = window.innerWidth >= 768
+          ? scrollRef.current.offsetWidth  // desktop
+          : scrollRef.current.offsetHeight; // mobile
+        const scrollPos = window.innerWidth >= 768
+          ? scrollRef.current.scrollLeft   // desktop
+          : scrollRef.current.scrollTop;   // mobile
+
+        const index = Math.round(scrollPos / sectionSize);
+        setCurrentSection(index);
+      }
+    };
+
+    const scrollContainer = scrollRef.current;
+    scrollContainer.addEventListener('scroll', handleScroll);
+
+    return () => {
+      scrollContainer.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-90"></div>
@@ -45,22 +65,19 @@ const App = () => {
 
       <div
         ref={scrollRef}
-        className={`
-          ${
-            window.innerWidth >= 768
-              ? "flex overflow-x-auto snap-x snap-mandatory"
-              : "block overflow-y-auto snap-y snap-mandatory"
-          } 
-          h-full w-full
-        `}
+        className={`h-full w-full ${
+          window.innerWidth >= 768
+            ? "flex overflow-x-auto snap-x snap-mandatory"
+            : "block overflow-y-auto snap-y snap-mandatory"
+        }`}
       >
         <HomeSection scrollToSection={scrollToSection} direction={direction} />
         <ProjectsSection direction={direction} />
         <About direction={direction} />
-        <Contact />
+        <Contact direction={direction} />
       </div>
 
-      <Navbar sections={sections} onSectionClick={scrollToSection} />
+      <Navbar />
       <BottomNavigation
         sections={sections}
         currentSection={currentSection}
