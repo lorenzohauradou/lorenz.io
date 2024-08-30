@@ -25,19 +25,19 @@ const About = () => {
             icon={<FaRocket className="text-4xl text-blue-400" />}
             title="Passionate"
             content="I'm passionate about creating stunning and performant web experiences that push the boundaries of what's possible."
-            delay={0.2}
+            delay={0.4}
           />
           <AboutCard
             icon={<FaLightbulb className="text-4xl text-yellow-400" />}
             title="Innovative"
             content="I constantly seek out new technologies and methodologies to solve complex problems and deliver cutting-edge solutions."
-            delay={0.4}
+            delay={0.6}
           />
           <AboutCard
             icon={<FaCode className="text-4xl text-green-400" />}
             title="Skilled"
             content="With expertise in modern frontend frameworks and best practices, I craft clean, efficient, and maintainable code."
-            delay={0.6}
+            delay={0.8}
           />
         </div>
       </motion.div>

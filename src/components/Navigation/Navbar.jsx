@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const Navbar = ({ sections, onSectionClick }) => {
+const Navbar = () => {
   const scrollRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 

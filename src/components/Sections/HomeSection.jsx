@@ -4,11 +4,11 @@ import { useRef } from "react";
 const HomeSection = ({ scrollToSection }) => {
   const splineRef = useRef();
 
-  const handleButtonClick = () => {
+  /*const handleButtonClick = () => {
     if (splineRef.current) {
       splineRef.current.emitEvent("play", "Start");
     }
-  };
+  };*/
 
   return (
     <section className="w-screen h-screen flex-shrink-0 snap-start relative">

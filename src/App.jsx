@@ -77,7 +77,7 @@ const App = () => {
         <Contact direction={direction} />
       </div>
 
-      <Navbar />
+      <Navbar  />
       <BottomNavigation
         sections={sections}
         currentSection={currentSection}
