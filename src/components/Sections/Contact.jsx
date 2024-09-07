@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaEnvelope,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaInstagram } from "react-icons/fa";
+//import { Resend } from "resend";
+
+//const resend = new Resend("");
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -23,29 +20,43 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  /*const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setFormData({ name: "", email: "", message: "" });
-  };
+
+    // Prepara il contenuto dell'email
+    const emailContent = `
+      <h1>New Contact Request</h1>
+      <p><strong>Email:</strong> ${formData.email}</p>
+      <p><strong>Message:</strong> ${formData.message}</p>
+    `;
+
+    try {
+      // Invia l'email tramite Resend SMTP
+      const response = await resend.emails.send({
+        from: `${formData.email}`,
+        to: "lorenzooradu@gmail.com",
+        subject: `New contact form submission from ${formData.email}`,
+        html: emailContent,
+      });
+
+      console.log("Email sent successfully:", response);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Failed to send email:", error);
+    }
+  }; */
 
   return (
     <section className="w-screen h-screen flex-shrink-0 snap-start relative flex items-center justify-center text-white">
       <div className="container mx-auto px-4 py-16">
-        <div
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto"
-        >
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">
             Get in Touch
           </h2>
           <div className="grid md:grid-cols-2 gap-12 xs:gap-1">
             <div className="xs:text-center">
               <p className="mb-4">
-                Feel free to reach out to me for any inquiries or collaboration
-                opportunities.
+                Feel free to reach out to me for any inquiries or collaboration opportunities.
               </p>
               <div className="flex items-center mb-4 xs:justify-center font-semibold">
                 <FaEnvelope className="mr-2" />
@@ -87,7 +98,7 @@ const Contact = () => {
               </div>
             </div>
             <div>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form /*</div>onSubmit={handleSubmit}*/ className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block mb-1">
                     Email

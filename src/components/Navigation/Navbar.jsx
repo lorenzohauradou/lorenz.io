@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Navbar = () => {
   const scrollRef = useRef(null);
@@ -34,38 +34,20 @@ const Navbar = () => {
     }
   }, [isMobile]);
 
-  if (isMobile) {
-    return (
-      <nav className="fixed top-8 left-0 right-0 p-4 z-50 overflow-hidden">
+  return (
+    <nav className="fixed top-8 left-0 right-0 p-4 z-50 overflow-hidden">
+      {isMobile ? (
         <div ref={scrollRef} className="relative whitespace-nowrap overflow-hidden">
-          <div className="inline-block whitespace-nowrap opacity-75">
-            <span className="text-2xl font-bold text-white mr-8">LORENZO HAURADOU</span>
-            <span className="text-2xl font-bold text-white mr-8">LORENZO HAURADOU</span>
+          <div className="inline-block whitespace-nowrap opacity-1 blur-[1px]">
+            <span className="text-2xl font-bold text-slate-300 mr-8">LORENZO HAURADOU</span>
+            <span className="text-2xl font-bold text-slate-300 mr-8">LORENZO HAURADOU</span>
           </div>
         </div>
-      </nav>
-    );
-  }
-
-  return (
-    <nav className="fixed top-8 left-0 right-0 p-4 z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-white">LORENZO</h1>
-        {/* Uncomment this if you want to add back the section links
-        <ul className="hidden md:flex space-x-4">
-          {sections.map((section, index) => (
-            <li key={section}>
-              <button 
-                onClick={() => onSectionClick(index)} 
-                className="text-white hover:text-gray-300"
-              >
-                {section}
-              </button>
-            </li>
-          ))}
-        </ul>
-        */}
-      </div>
+      ) : (
+        <div className="container mx-auto flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-white">LORENZO</h1>
+        </div>
+      )}
     </nav>
   );
 };

@@ -1,35 +1,32 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import gsap from 'gsap';
 
 const BottomNavigation = ({ sections, currentSection, onSectionClick }) => {
   const buttonRefs = useRef([]);
+  
   const lerp = (x, y, a) => x * (1 - a) + y * a;
 
-  function handleMouseMove(event) {
-    const dims = this.getBoundingClientRect();
-
-    const xstart = dims.x;
-    const xend = xstart + dims.width;
-    const zeroOne = gsap.utils.mapRange(xstart, xend, 0, 1, event.clientX);
-
-    const ystart = dims.y;
-    const yend = ystart + dims.height;
-    const zerotwo = gsap.utils.mapRange(ystart, yend, 0, 1, event.clientY);
-
-    gsap.to(this, {
-      x: lerp(-20, 20, zeroOne),
-      y: lerp(-30, 30, zerotwo)  
-    });
-  }
-
-  function handleMouseLeave() {
-    gsap.to(this, {
-      x: 0,
-      y: 0  
-    });
-  }
-
   useEffect(() => {
+    const handleMouseMove = (event) => {
+      const dims = event.currentTarget.getBoundingClientRect();
+
+      const zeroOne = gsap.utils.mapRange(dims.x, dims.x + dims.width, 0, 1, event.clientX);
+      const zerotwo = gsap.utils.mapRange(dims.y, dims.y + dims.height, 0, 1, event.clientY);
+
+      gsap.to(event.currentTarget, {
+        x: lerp(-20, 20, zeroOne),
+        y: lerp(-30, 30, zerotwo)  
+      });
+    };
+
+    const handleMouseLeave = (event) => {
+      gsap.to(event.currentTarget, {
+        x: 0,
+        y: 0  
+      });
+    };
+
     buttonRefs.current.forEach(button => {
       if (button) {
         button.addEventListener('mousemove', handleMouseMove);
@@ -45,7 +42,7 @@ const BottomNavigation = ({ sections, currentSection, onSectionClick }) => {
         }
       });
     };
-  }, []); 
+  }, [buttonRefs.current]); // Aggiorna dipendenze per evitare avvisi
 
   return (
     <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
@@ -67,6 +64,12 @@ const BottomNavigation = ({ sections, currentSection, onSectionClick }) => {
       </div>
     </div>
   );
+};
+
+BottomNavigation.propTypes = {
+  sections: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentSection: PropTypes.number.isRequired,
+  onSectionClick: PropTypes.func.isRequired,
 };
 
 export default BottomNavigation;

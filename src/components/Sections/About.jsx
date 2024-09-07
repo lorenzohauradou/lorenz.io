@@ -1,7 +1,28 @@
-import { delay, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { FaRocket, FaLightbulb, FaCode } from "react-icons/fa";
+import PropTypes from "prop-types";
 
 const About = () => {
+  const [isHidden, setIsHidden] = useState(false);
+
+  const handleResize = () => {
+    if (window.innerWidth <= 375 && window.innerHeight <= 667) {
+      setIsHidden(true);
+    } else {
+      setIsHidden(false);
+    }
+  };
+
+  useEffect(() => {
+    handleResize(); // Check on initial load
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <section className="scale xs:pt-28 w-screen min-h-screen flex-shrink-0 snap-start relative flex items-center justify-center overflow-hidden">
       <motion.div
@@ -9,14 +30,14 @@ const About = () => {
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.5 }}
         viewport={{ once: false }}
-        className="container mx-auto px-4 flex flex-col items-center justify-center w-full"
+        className="container mx-auto px-4 flex flex-col items-center justify-center w-full mt-5"
       >
         <motion.h2
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-6xl font-bold text-white mb-12 tracking-tight text-center"
+          className="text-5xl md:text-6xl font-bold text-slate-100 mb-12 tracking-tight text-center"
         >
           About Me
         </motion.h2>
@@ -27,18 +48,23 @@ const About = () => {
             content="I'm passionate about creating stunning and performant web experiences that push the boundaries of what's possible."
             delay={0.4}
           />
-          <AboutCard
-            icon={<FaLightbulb className="text-4xl text-yellow-400" />}
-            title="Innovative"
-            content="I constantly seek out new technologies and methodologies to solve complex problems and deliver cutting-edge solutions."
-            delay={0.6}
-          />
+
           <AboutCard
             icon={<FaCode className="text-4xl text-green-400" />}
             title="Skilled"
             content="With expertise in modern frontend frameworks and best practices, I craft clean, efficient, and maintainable code."
             delay={0.8}
+            id="About3"
           />
+
+          {!isHidden && (
+            <AboutCard
+              icon={<FaLightbulb className="text-4xl text-yellow-400" />}
+              title="Innovative"
+              content="I constantly seek out new technologies and methodologies to solve complex problems and deliver cutting-edge solutions."
+              delay={0.6}
+            />
+          )}
         </div>
       </motion.div>
     </section>
@@ -60,10 +86,19 @@ const AboutCard = ({ icon, title, content, delay }) => {
       >
         {icon}
       </motion.div>
-      <h3 className="text-xl font-semibold text-white mb-2 text-center">{title}</h3>
+      <h3 className="text-xl font-semibold text-white mb-2 text-center">
+        {title}
+      </h3>
       <p className="text-gray-300 text-center">{content}</p>
     </motion.div>
   );
+};
+
+AboutCard.propTypes = {
+  icon: PropTypes.element.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  delay: PropTypes.number.isRequired,
 };
 
 export default About;

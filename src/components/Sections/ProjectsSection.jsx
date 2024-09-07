@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import PropTypes from "prop-types";
 
 const ProjectsSection = ({ direction }) => {
   return (
@@ -12,7 +13,7 @@ const ProjectsSection = ({ direction }) => {
             {[1, 2, 3].map((project) => (
               <motion.div
                 key={project}
-                className="bg-gray-800 bg-opacity-50 p-6 rounded-lg backdrop-blur-sm"
+                className="bg-gray-800 bg-opacity-50 p-6 rounded-lg"
                 initial={{
                   opacity: 0,
                   x: direction === 'right' ? 100 : -100,
@@ -34,6 +35,10 @@ const ProjectsSection = ({ direction }) => {
       </div>
     </section>
   );
+};
+
+ProjectsSection.propTypes = {
+  direction: PropTypes.oneOf(['left', 'right']).isRequired,
 };
 
 export default ProjectsSection;
